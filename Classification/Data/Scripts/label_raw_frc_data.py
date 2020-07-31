@@ -7,19 +7,27 @@ import matplotlib.pyplot as plt
 import json
 import sys
 from shutil import copyfile
+sys.path.append('C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/')
+from Training.Model_Builder import ModelBuilder
 
 #2555
 class LabellerUi:
 	def __init__(self):
-		raw_data_path = ['C:/Users/shloks/Downloads/Raw Data/Filming Day 1 Images/img/', 'C:/Users/shloks/Downloads/Raw Data/Filming Day 1 Video/img/', 'C:/Users/shloks/Downloads/Raw Data/Filming Day 2 Video/img/']
-		self.img_num = 2854
+		raw_data_path = ['C:/Users/shloks/Downloads/Raw Data/Filming Day 1 Images/img/',
+			'C:/Users/shloks/Downloads/Raw Data/Filming Day 1 Video/img/',
+			'C:/Users/shloks/Downloads/Raw Data/Filming Day 2 Video/img/']
+		self.img_num = 2863
 		self.prediction = None
-		self.datadirectory = ['C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/Data/ImgData/0/', 'C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/Data/ImgData/1/']
+		self.datadirectory = ['C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/Data/ImgData/0/',
+			'C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/Data/ImgData/1/']
+		
 		self.img_files = []
-		self.model = self.build_model()
 		for i in raw_data_path:
 			for f in os.listdir(i):
 				self.img_files.append([i, f])
+
+		mb = ModelBuilder(ckpt = 'C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/Training/checkpoints/LL')
+		self.model = mb.get_model()
 
 		self.datacount = [0 for i in range(2)]
 		for i in self.datadirectory:
@@ -79,35 +87,6 @@ class LabellerUi:
 	    	return True
 	    self.move_to_dataset(self.img_files[self.img_num][0] + self.img_files[self.img_num][1], label)
 	    self.draw_next()
-
-	def build_model(self):
-		inception = tf.keras.applications.Xception(
-		    weights='imagenet',
-		    input_shape=(180, 180, 3),
-		    include_top=False)
-		inception.trainable = False
-
-		top_layer =  tf.keras.Sequential(
-		    [
-		    	tf.keras.layers.GlobalAveragePooling2D(),
-		    	tf.keras.layers.Dropout(0.5),
-		        tf.keras.layers.Dense(1)
-		    ]
-		)
-
-		inputs = tf.keras.Input(shape=(180, 180, 3))
-		x = tf.keras.layers.experimental.preprocessing.Rescaling(1./255)(inputs)
-		x = inception(x, training=False)
-		x = top_layer(x)
-		model = tf.keras.Model(inputs, x)
-		model.summary()
-
-		model.compile(
-		  optimizer= tf.keras.optimizers.Adam(),
-		  loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
-		   metrics=[tf.keras.metrics.BinaryAccuracy()])
-		top_layer.load_weights('C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/Training/checkpoints/LL')
-		return(model)
 
 	def move_to_dataset(self, fname, label):
 		self.datacount[label] += 1
