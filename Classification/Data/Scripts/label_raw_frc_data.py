@@ -11,13 +11,14 @@ sys.path.append('C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classific
 from Training.Model_Builder import ModelBuilder
 
 #2555
+#3450
 #2863
 class LabellerUi:
 	def __init__(self):
 		raw_data_path = ['C:/Users/shloks/Downloads/Raw Data/Filming Day 1 Images/img/',
 			'C:/Users/shloks/Downloads/Raw Data/Filming Day 1 Video/img/',
 			'C:/Users/shloks/Downloads/Raw Data/Filming Day 2 Video/img/']
-		self.img_num = 3450
+		self.img_num = 3547
 		self.prediction = None
 		self.datadirectory = ['C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/Data/ImgData/0/',
 			'C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/Data/ImgData/1/']
@@ -58,7 +59,7 @@ class LabellerUi:
     		interpolation='nearest')
 		i = np.expand_dims(tf.keras.preprocessing.image.img_to_array(i), axis = 0)
 		print(self.model.predict(i))
-		if list(self.model.predict(i))[0] > 0:
+		if list(self.model.predict(i))[0] > 0.5:
 			self.prediction = 1
 		else:
 			self.prediction = 0

@@ -19,7 +19,7 @@ class ModelBuilder:
 		    [
 		    	tf.keras.layers.GlobalAveragePooling2D(),
 		    	tf.keras.layers.Dropout(0.5),
-		        tf.keras.layers.Dense(1)
+		        tf.keras.layers.Dense(1, activation='sigmoid')
 		    ]
 		)
 
