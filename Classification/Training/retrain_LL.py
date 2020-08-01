@@ -6,8 +6,8 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 from Model_Builder import ModelBuilder
 
-imgdir = 'C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Data/ImgData'
-batch_size = 64
+imgdir = 'C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/Data/ImgData'
+batch_size = 32
 img_height = 180
 img_width = 180
 AUTOTUNE = tf.data.experimental.AUTOTUNE
@@ -41,7 +41,7 @@ model.fit(
   train_ds,
   batch_size=batch_size,
   validation_data=val_ds,
-  epochs=1,
+  epochs=3,
   shuffle = True
 )
 

@@ -52,13 +52,13 @@ class ModelBuilder:
 	def get_model(self):
 		return(self.model)
 
-	def init_LL(ckpt = None):
+	def init_LL(self, ckpt = None):
 		if self.ckpt:
 			self.top_layer.load_weights(self.ckpt)
 		elif ckpt:
 			self.top_layer.load_weights(ckpt)
 
-	def save_ll(ckpt = None):
+	def save_LL(self, ckpt = None):
 		if self.ckpt:
 			self.top_layer.save_weights(self.ckpt)
 		elif ckpt:

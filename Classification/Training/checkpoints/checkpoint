@@ -1,2 +1,2 @@
-model_checkpoint_path: "LL"
-all_model_checkpoint_paths: "LL"
+model_checkpoint_path: "LL_NEW"
+all_model_checkpoint_paths: "LL_NEW"

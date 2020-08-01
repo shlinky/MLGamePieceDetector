@@ -4,39 +4,11 @@ import PIL
 import PIL.Image
 import tensorflow as tf
 import matplotlib.pyplot as plts
+from Model_Builder import ModelBuilder
 
 
-inception = tf.keras.applications.Xception(
-    weights='imagenet',
-    input_shape=(180, 180, 3),
-    include_top=False)
-inception.trainable = False
-
-top_layer =  tf.keras.Sequential(
-    [
-    	tf.keras.layers.GlobalAveragePooling2D(),
-    	tf.keras.layers.Dropout(0.5),
-      tf.keras.layers.Dense(1)
-    ]
-)
-
-inputs = tf.keras.Input(shape=(180, 180, 3))
-x = tf.keras.layers.experimental.preprocessing.Rescaling(1./255)(inputs)
-x = inception(x, training=False)
-print(x.shape)
-inception.summary()
-x = top_layer(x)
-model = tf.keras.Model(inputs, x)
-model.summary()
-
-# model.compile(
-#   optimizer= tf.keras.optimizers.Adam(
-#     learning_rate=0.0001
-#   ),
-#   loss=tf.losses.SparseCategoricalCrossentropy(from_logits=True),
-#   metrics=['accuracy'])
-
-top_layer.load_weights('./checkpoints/LL')
+mb = ModelBuilder(ckpt = './checkpoints/LL')
+model = mb.get_model()
 
 path = 'C:/Users/shloks/Documents/1data39.png'
 i = tf.keras.preprocessing.image.load_img(

@@ -11,12 +11,13 @@ sys.path.append('C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classific
 from Training.Model_Builder import ModelBuilder
 
 #2555
+#2863
 class LabellerUi:
 	def __init__(self):
 		raw_data_path = ['C:/Users/shloks/Downloads/Raw Data/Filming Day 1 Images/img/',
 			'C:/Users/shloks/Downloads/Raw Data/Filming Day 1 Video/img/',
 			'C:/Users/shloks/Downloads/Raw Data/Filming Day 2 Video/img/']
-		self.img_num = 2863
+		self.img_num = 3450
 		self.prediction = None
 		self.datadirectory = ['C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/Data/ImgData/0/',
 			'C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/Data/ImgData/1/']
@@ -26,7 +27,7 @@ class LabellerUi:
 			for f in os.listdir(i):
 				self.img_files.append([i, f])
 
-		mb = ModelBuilder(ckpt = 'C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/Training/checkpoints/LL')
+		mb = ModelBuilder(ckpt = 'C:/Users/shloks/Documents/robproj/MLGamePieceDetector/Classification/Training/checkpoints/LL_NEW')
 		self.model = mb.get_model()
 
 		self.datacount = [0 for i in range(2)]
