@@ -22,6 +22,6 @@ pip install Pillow
 git clone https://github.com/shlinky/MLGamePieceDetector.git
 
 ## Demo:
-To test out the program, run demo.py
-this should give a visualization of the complete algorithm working
-you can change which image it's running on by changing the image_dir variable
+To test out the program, run demo.py.
+This should give a visualization of the complete algorithm working
+You can change which image it's running on by changing the image_dir variable
