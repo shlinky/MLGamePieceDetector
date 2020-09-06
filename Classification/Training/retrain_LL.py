@@ -34,7 +34,7 @@ val_ds = tf.keras.preprocessing.image_dataset_from_directory(
 # val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 print(train_ds.class_names)
 
-mb = ModelBuilder(training = True, ckpt = './checkpoints/LL_NEW')
+mb = ModelBuilder(training = True, ckpt = './checkpoints/LL_NEWSA')
 model = mb.get_model()
 
 model.fit(

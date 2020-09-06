@@ -22,7 +22,8 @@ class LocationCalculator():
 			distances[n] = (self.obj_size / size) * self.camera_const
 		return(distances)
 
-	def get_world_locations(self, img_positions, img_size):
+	#image size default argument means that sizes are already relative
+	def get_world_locations(self, img_positions, img_size = [1, 1]):
 		sizes = [img_positions[i][2] / img_size[0] for i in range(len(img_positions))]
 		distances = self.get_distances(sizes)
 

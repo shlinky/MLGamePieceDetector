@@ -43,7 +43,7 @@ class ModelBuilder:
 
 		self.model.compile(
 		  optimizer= tf.keras.optimizers.Adam(),
-		  loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
+		  loss=tf.keras.losses.BinaryCrossentropy(from_logits=False),
 		   metrics=[tf.keras.metrics.BinaryAccuracy()])
 
 		if (self.ckpt) and (not self.training):

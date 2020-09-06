@@ -7,10 +7,10 @@ import matplotlib.pyplot as plts
 from Model_Builder import ModelBuilder
 
 
-mb = ModelBuilder(ckpt = './checkpoints/LL_NEW')
+mb = ModelBuilder(ckpt = './checkpoints/LL_NEWSA')
 model = mb.get_model()
 
-path = 'C:/Users/shloks/Documents/g13.jpg'
+path = 'C:/Users/shloks/Documents/g7.jpg'
 i = tf.keras.preprocessing.image.load_img(
     path, grayscale=False, color_mode='rgb', target_size=[180, 180],
     interpolation='nearest'
