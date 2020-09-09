@@ -27,6 +27,10 @@ pip install Pillow
 ```
 ## Installation:
 git clone https://github.com/shlinky/MLGamePieceDetector.git
+The program needs the faster-rcnn model graph and weights to perform inference  
+Download these from the Tensorflow research models github page: http://download.tensorflow.org/models/object_detection/tf2/20200711/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8.tar.gz  
+You can also download one of the other faster rcnn models from the page.  
+Then, place the unzipped folder inside of the localization folder.
 
 ## Demo:
 To test out the program, run demo.py.
